@@ -1,0 +1,25 @@
+NameVirtualHost *
+
+<VirtualHost *:80>
+  DocumentRoot    /path/to/public
+  ErrorLog        /path/to/logs/error.log
+  CustomLog       /path/to/logs/access.log common
+
+  DirectoryIndex  Application.php
+  ServerName      spellchecker.example.org
+  
+  <Directory /path/to/public>
+    Options FollowSymLinks ExecCGI
+  
+    Order deny,allow
+    Allow From All
+  
+    <IfModule mod_rewrite.c>
+      RewriteEngine On
+  
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteRule ^(.*)$ Application.php [QSA,L]
+    </IfModule>
+  </Directory>
+</VirtualHost>
