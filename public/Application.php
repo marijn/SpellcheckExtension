@@ -19,7 +19,7 @@
     $format  = '/<c o="([^"]*)" l="([^"]*)" s="([^"]*)">([^<]*)<\/c>/';
     $matches = array();
 
-		preg_match_all($format, $arg_input, $matches, PREG_SET_ORDER);
+    preg_match_all($format, $arg_input, $matches, PREG_SET_ORDER);
 
     return $matches;
   }
@@ -46,12 +46,12 @@
 
     foreach (extract_suggestion($googleResponse->getContent()) as $suggestion)
     {
-			$word = substr($text, $suggestion[1], $suggestion[2]);
+      $word = substr($text, $suggestion[1], $suggestion[2]);
 
-			if ( ! in_array($word, $suggestions))
-			{
-				$suggestions[] = $word;
-			}
+      if ( ! in_array($word, $suggestions))
+      {
+        $suggestions[] = $word;
+      }
     }
 
     $response = new Response(json_encode($suggestions), $googleResponse->getStatusCode(), $headers);
