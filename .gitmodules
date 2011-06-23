@@ -1,0 +1,3 @@
+[submodule "vendor/Silex"]
+	path = vendor/Silex
+	url = git://github.com/marijn/Silex.git
